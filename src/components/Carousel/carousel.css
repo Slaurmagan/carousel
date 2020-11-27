@@ -1,0 +1,123 @@
+body{
+    height: 100vh;
+    width: 100%;
+}
+
+#root{
+    flex-direction: column;
+}
+body,#root{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#root,.carousel-wrap,.carousel {
+    width: 100%;
+}
+
+.dot {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: rgba(0,0,0,.2);
+    margin-left: 5px;
+    transition: backgroung-color .3s,transform .3s;
+}
+.dot.active{
+    background-color: rgba(0,0,0,.7);
+    transform: scale(1.1);
+}
+
+.dot:hover {
+    cursor: pointer;
+}
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+.carousel-wrap,.carousel-nav {
+    width: 500px;
+}
+.carousel-wrap{
+    min-height: 220px;
+    height: auto;
+    margin-bottom: 15px;
+}
+.carousel-nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.carousel {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+}
+.carousel-item {
+    min-width: 500px;
+    /* transition: transform .5s linear,opacity .7s linear; */
+    transition: all .5s linear;
+}
+.carousel .carousel-item.inactive{
+    opacity: .5 !important;
+}
+.carousel .carousel-item.active {
+    opacity: 1 !important;
+}
+
+.carousel-item.active img{
+    width: 500px;
+    height: 200px;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+@media screen and (max-width: 360px) {
+    body,.carousel-item.active img,.carousel-wrap,.carousel-nav {
+        width: 350px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    body,.carousel-item.active img,.carousel-wrap,.carousel-nav {
+        width: 400px;
+    }
+}
+
+@media screen and (min-width: 700px) and (max-width: 900px) {
+    body{
+        width: 750px;
+    }
+    .carousel-item.active img,.carousel-wrap,.carousel-nav, .carousel-item img,.carousel-item,.carousel-item.active {
+        width: 730px !important;
+    }
+    .carousel-item {
+        min-width:730px;
+    }
+    .carousel-item img,.carousel-item.active img{
+        height: 300px;
+    }
+
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1100px) {
+    body{
+        width: 1015px;
+    }
+    .carousel-item.active img,.carousel-wrap,.carousel-nav, .carousel-item img,.carousel-item,.carousel-item.active {
+        width: 900px !important;
+    }
+    .carousel-item {
+        min-width: 900px;
+    }
+    .carousel-item img,.carousel-item.active img{
+        height: 400px;
+    }
+
+}
