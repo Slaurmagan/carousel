@@ -4,6 +4,10 @@
 
 ``` git clone git@github.com:Slaurmagan/carousel.git ```
 
+## Navigate to folder 
+
+``` cd carousel ```
+
 
 ## Then run
 
