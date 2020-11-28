@@ -4,7 +4,6 @@ import images from './data'
 
 export default class Carousel extends React.Component{
 
-
     constructor(props) {
         super(props);
 
@@ -12,7 +11,8 @@ export default class Carousel extends React.Component{
             currentSlide: 0,
             data: images, // Fetch smth from API
             infinite: this.props.infinite, // Set to true if u want infinite scrolling
-            min_distance: this.props.min_distance
+            min_distance: this.props.min_distance,
+            side_control_distance: this.props.side_control_distance
         };
 
         this.nextSlide = this.nextSlide.bind(this)
@@ -105,9 +105,24 @@ export default class Carousel extends React.Component{
         
     }
 
-    componentDidMount() {
+    trackSideControls(node) {
+        let imgW = document.querySelector('img').width
+        node.addEventListener('dblclick', e => {
+            let offsetX = e.offsetX
+            if(offsetX < this.state.side_control_distance) {
+                this.prevSlide()
+            } else if(offsetX > imgW - this.state.side_control_distance) {
+                this.nextSlide()
+            }
+        })
+    }
+
+    componentDidMount() {    
         let items = document.querySelectorAll('.carousel-item')
-        items.forEach(item => this.trackSwipe(item))
+        items.forEach(item => {
+            this.trackSwipe(item)
+            this.trackSideControls(item)
+        })
     }
 
     render() {
