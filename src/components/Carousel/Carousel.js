@@ -83,19 +83,28 @@ export default class Carousel extends React.Component{
             y: 0
         }
 
-        let swipe_end = new Object
+        let swipe_end = {
+            x: 0,
+            y: 0
+        }
 
         node.addEventListener('touchstart',e => {
+            console.log(swipe_start)
+            console.log(swipe_end)
             swipe_start.x = e.touches[0].clientX
-            swipe_start.y = e.touches[0].clienty
+            swipe_start.y = e.touches[0].clientY
+            swipe_end.x = swipe_start.x
+            swipe_end.y = swipe_start.y
         })
 
         node.addEventListener('touchmove',e => {
             swipe_end.x = e.touches[0].clientX
-            swipe_end.Y = e.touches[0].clientY
+            swipe_end.y = e.touches[0].clientY
         })
 
         node.addEventListener('touchend',e => {      
+            console.log(swipe_start)
+            console.log(swipe_end)
             if(swipe_end.x - swipe_start.x > min_distance) {
                 this.prevSlide()
             } else if(swipe_end.x - swipe_start.x < -1 * min_distance) {
@@ -106,8 +115,8 @@ export default class Carousel extends React.Component{
     }
 
     trackSideControls(node) {
-        let imgW = document.querySelector('img').width
-        node.addEventListener('dblclick', e => {
+        let imgW = document.querySelector('.carousel-item').clientWidth
+        node.addEventListener('click', e => {
             let offsetX = e.offsetX
             if(offsetX < this.state.side_control_distance) {
                 this.prevSlide()
@@ -134,16 +143,7 @@ export default class Carousel extends React.Component{
                             return(
                                 <div class={this.setClass(index)} data-index={index}>
                                     <img src={src}></img>
-                                    orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's 
-                                    standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                                    It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
-                                    It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-                                     and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                                     orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's 
-                                    standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                                    It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
-                                    It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-                                     and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                                    <p></p>
                                 </div>
                             )
                         })}
